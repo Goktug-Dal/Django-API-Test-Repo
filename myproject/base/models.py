@@ -5,3 +5,11 @@ from django.db import models
 class Item(models.Model):
     name = models.CharField(max_length= 200)
     created = models.DateTimeField(auto_now_add=True)
+
+class RPG(models.Model):
+    name = models.CharField(max_length= 200)
+    created = models.DateTimeField(auto_now_add=True)
+
+    strength = models.IntegerField()
+    health = models.IntegerField()
+    attack_speed = models.IntegerField()
