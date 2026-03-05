@@ -40,17 +40,31 @@ def fight(request, id1, id2):
 
     ch1_str = ch1.strength
     ch2_str = ch2.strength
-
+    log = []
+    round_count = 1
     while ch2.health > 0 and ch1.health > 0:
+        log.append(f"Tour "+ str(round_count) + " Results: ")
         ch2.health -= ch1_str
         if ch2.health <= 0:
             ch2.health = 0
 
+        log.append("Charachter 1's dealt "+ str(ch1_str)+ " Damage:" )
         if(ch2.health != 0):
             ch1.health -= ch2_str
+            log.append("Charachter 2's dealt "+ str(ch2_str) + " Damage:" )
             if(ch1.health <= 0):
                 ch1.health = 0
+        
+        
 
+        log.append("Charachter 1's current health " + str(ch1.health) + " Damage:" )
+        log.append("Charachter 2's current health " + str(ch2.health) + " Damage:" )
+
+        if ch1.health <= 0:
+            log.append("CH1 LOST! ")
+        elif ch2.health <= 0:
+            log.append("CH2 LOST")
+        round_count += 1
     ch1.save() #have to save so its actually permananet
     ch2.save()
 
@@ -58,5 +72,5 @@ def fight(request, id1, id2):
     serializer = RPGSerializer(rpgs, many= True)
     # we serialize it here to get the updated data
 
-    return Response(serializer.data)
+    return Response({"info":serializer.data, "log":log})
 
