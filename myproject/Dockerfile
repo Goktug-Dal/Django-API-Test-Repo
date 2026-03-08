@@ -15,3 +15,7 @@ COPY . .
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 #docker build -t combat-api .
 #docker run -p 8000:8000 combat-api
+
+#docker compose up -d
+#docker-compose exec api python manage.py makemigrations
+#docker-compose exec api python manage.py migrate
