@@ -59,3 +59,24 @@ def fight(request, id1, id2):
 
     return Response({"info":serializer.data, "log":log})
 
+@api_view(['GET'])
+def leader(request):
+    chas = RPG.objects.order_by('-health')
+    serializer = RPGSerializer(chas, many= True)
+    return Response(serializer.data)
+
+@api_view(['GET', 'POST'])
+def fix(request, id):
+    cha = RPG.objects.get(id = id)
+    cha.health += 100
+    cha.save()
+    serializer = RPGSerializer(cha, many= False)
+    return Response(serializer.data)
+
+@api_view(['GET', 'POST'])
+def delete(request, id):
+    cha = RPG.objects.get(id = id)
+    serializer = RPGSerializer(cha, many= False)
+    cha.delete()
+    return Response(serializer.data)
+
