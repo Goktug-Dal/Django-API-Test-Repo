@@ -1,17 +1,23 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import permission_classes
+
 from base.models import RPG
 from .serializers import RPGSerializer
 
 from django.shortcuts import redirect, render
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def viewRPG(request):
     rpgs = RPG.objects.all()
     serializer = RPGSerializer(rpgs, many = True)
     return Response(serializer.data)
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def addRPG(request):
     serializer = RPGSerializer(data = request.data)
     if serializer.is_valid():
@@ -19,6 +25,7 @@ def addRPG(request):
     return Response(serializer.data)
 
 @api_view(['GET','POST']) # post for permanent effect
+@permission_classes([AllowAny])
 def fight(request, id1, id2):
     ch1 = RPG.objects.get(id = id1)
     ch2 = RPG.objects.get(id = id2)
@@ -60,12 +67,14 @@ def fight(request, id1, id2):
     return Response({"info":serializer.data, "log":log})
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def leader(request):
     chas = RPG.objects.order_by('-health')
     serializer = RPGSerializer(chas, many= True)
     return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
+@permission_classes([AllowAny])
 def fix(request, id):
     cha = RPG.objects.get(id = id)
     cha.health += 100
