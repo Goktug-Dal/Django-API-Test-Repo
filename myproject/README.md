@@ -1,5 +1,6 @@
-https://django-api-test-repo.onrender.com
 # Turn-Based Combat Microservice ⚔️
+
+[**Live Demo**](https://django-api-test-repo.onrender.com/leader/) | [**API Documentation**](#api-endpoints)
 
 A logic-driven RESTful API that simulates state-based RPG combat. Built with Django REST Framework, fully containerized with Docker, and backed by a production-ready MySQL database.
 
