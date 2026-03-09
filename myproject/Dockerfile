@@ -2,9 +2,7 @@ FROM python:3.13-slim
 
 WORKDIR /app
 
-RUN apt-get update \
-    && apt-get install -y pkg-config default-libmysqlclient-dev build-essential \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y build-essential libpq-dev gcc
 
 COPY requirements.txt .
 
