@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework.authtoken', # for db security
     'base',
 ]
 
@@ -104,6 +105,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication', #for website
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [ #for security
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+} # i used thunder client
 
 
 # Internationalization
