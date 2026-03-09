@@ -9,7 +9,8 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
-CMD python manage.py migrate && python manage.py createsuperuser --noinput --username admin --email admin@admin.com || true && python manage.py runserver 0.0.0.0:8000
+
+CMD ["bash", "start.sh"]
 #docker build -t combat-api .
 #docker run -p 8000:8000 combat-api
 
