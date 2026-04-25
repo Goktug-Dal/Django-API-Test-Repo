@@ -11,6 +11,13 @@ from django.shortcuts import redirect, render
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
+def get(request, id):
+    rpg = RPG.objects.get(id=id)
+    serializer = RPGSerializer(rpg)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
 def viewRPG(request):
     rpgs = RPG.objects.all()
     serializer = RPGSerializer(rpgs, many = True)
