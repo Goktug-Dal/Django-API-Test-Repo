@@ -18,7 +18,7 @@ function App() {
   // 1. get all chas
   const getChars = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/"); // change it to render link
+      const response = await fetch("https://django-api-test-repo.onrender.com/api/"); 
       const data = await response.json();
       setCharacters(data); 
     } catch (error) {
@@ -30,7 +30,7 @@ function App() {
   const fight = async () => {
     setCombatLog(["Swinging swords..."]);
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/fight/${fighter1}/${fighter2}/`, { // change later
+      const response = await fetch(`https://django-api-test-repo.onrender.com/api/fight/${fighter1}/${fighter2}/`, { 
         method: "POST" 
       });
       const data = await response.json();
@@ -51,7 +51,7 @@ function App() {
   const createCharacter = async () => {
     setSystemLog("Sending to database...");
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/add-rpg/", { // change
+      const response = await fetch("https://django-api-test-repo.onrender.com/api/add-rpg/", { 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -84,7 +84,7 @@ function App() {
   // fix cha
   const healCharacter = async (id: number) => {
     try {
-      await fetch(`http://127.0.0.1:8000/api/fix/${id}/`, { method: "POST" }); // change
+      await fetch(`https://django-api-test-repo.onrender.com/api/fix/${id}/`, { method: "POST" }); 
       getChars(); 
     } catch (error) {
       console.error("Failed to heal");
@@ -94,12 +94,13 @@ function App() {
   // delete cha
   const deleteCharacter = async (id: number) => {
     try {
-      await fetch(`http://127.0.0.1:8000/api/delete/${id}/`, { method: "POST" }); // change
+      await fetch(`https://django-api-test-repo.onrender.com/api/delete/${id}/`, { method: "POST" }); 
       getChars(); 
     } catch (error) {
       console.error("Failed to delete");
     }
   };
+
  // html part
   return (
     <div style={{ padding: "40px", fontFamily: "sans-serif", maxWidth: "800px", margin: "0 auto" }}>
@@ -165,7 +166,7 @@ function App() {
         </div>
       </div>
 
-      {/*  */}
+      {/* refresh */}
       <button onClick={getChars} style={{ padding: "10px 20px", cursor: "pointer", backgroundColor: "#3498db", color: "white", border: "none", borderRadius: "4px", marginBottom: "20px" }}>
         Load / Refresh Characters
       </button>
