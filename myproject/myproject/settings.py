@@ -163,3 +163,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",  # Just in case it uses this IP instead
     "https://django-api-test-repo.vercel.app", #required for vercel/react
 ]
+
+DEBUG = TRUE
