@@ -164,4 +164,4 @@ CORS_ALLOWED_ORIGINS = [
     "https://django-api-test-repo.vercel.app", #required for vercel/react
 ]
 
-DEBUG = TRUE
+DEBUG = True
